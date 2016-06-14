@@ -1,4 +1,11 @@
+import java.util.Random;
+
 public class Tank {
+
+    final int UP = 1;
+    final int DOWN = 2;
+    final int LEFT = 3;
+    final int RIGHT = 4;
 
     private int speed = 10;
 
@@ -64,10 +71,67 @@ public class Tank {
     }
 
     public void moveRandom() throws Exception{
+        Random r = new Random();
+        while (true)
+        {
+            direction = r.nextInt(5);
+            if (direction > 0){
+                fire();
+                move();
+
+            }
+        }
+    }
+
+    public void moveToQuadrant(int v, int h) throws Exception{
+        String coordinates = af.getQuadrantXY(v,h);
+        int y = Integer.parseInt(coordinates.split("_")[0]);
+        int x = Integer.parseInt(coordinates.split("_")[1]);
+
+        if (this.x < x) {
+            while (this.x != x){
+                turn(RIGHT);
+                fire();
+                move();
+            }
+
+        } else {
+            while (this.x != x){
+                turn(LEFT);
+                fire();
+                move();
+            }
+        }
+
+        if(this.y < y) {
+            while (this.y != y){
+                turn(DOWN);
+                fire();
+                move();
+            }
+        } else {
+            while (this.y != y){
+                turn(UP);
+                fire();
+                move();
+            }
+        }
 
     }
 
-    public void moveToQuadrant(int x, int y) throws Exception{
+    void clean() throws Exception {
+
+       moveToQuadrant(1,1);
+        for (int i = 2; i <= 9; i++) {
+            moveToQuadrant(1,i);
+            turn(DOWN);
+            for (int j = 1; j <= 8; j++) {
+                if (bf.scanQuadrant(j, i-1) == "B")
+                    fire();
+            }
+        }
+            fire();
+            turn(LEFT);
 
     }
 
