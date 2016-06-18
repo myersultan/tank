@@ -2,15 +2,15 @@ import java.util.Random;
 
 public class Tank {
 
-    final int UP = 1;
-    final int DOWN = 2;
-    final int LEFT = 3;
-    final int RIGHT = 4;
+//    final int UP = 1;
+//    final int DOWN = 2;
+//    final int LEFT = 3;
+//    final int RIGHT = 4;
 
     private int speed = 10;
 
     //1-up, 2-down, 3-left, 4-right
-    private int direction;
+    private Direction direction;
 
     //current position on BF
     private int x;
@@ -21,10 +21,10 @@ public class Tank {
     private BattleField bf;
 
     public Tank(ActionField af, BattleField bf){
-        this(af, bf, 128, 512, 1);
+        this(af, bf, 128, 512, Direction.UP);
     }
 
-    public Tank(ActionField af, BattleField bf, int x, int y, int direction){
+    public Tank(ActionField af, BattleField bf, int x, int y, Direction direction){
         this.af = af;
         this.bf = bf;
         this.x = x;
@@ -48,7 +48,7 @@ public class Tank {
         return y;
     }
 
-    public int getDirection() {
+    public Direction getDirection() {
         return direction;
     }
 
@@ -56,7 +56,7 @@ public class Tank {
         return speed;
     }
 
-    public void turn(int direction) throws Exception{
+    public void turn(Direction direction) throws Exception{
         this.direction = direction;
         af.processTurn(this);
     }
@@ -74,8 +74,8 @@ public class Tank {
         Random r = new Random();
         while (true)
         {
-            direction = r.nextInt(5);
-            if (direction > 0){
+            direction.setId(r.nextInt(5));
+            if (direction.getId() > 0){
                 fire();
                 move();
 
@@ -90,14 +90,14 @@ public class Tank {
 
         if (this.x < x) {
             while (this.x != x){
-                turn(RIGHT);
+                turn(Direction.RIGHT);
                 fire();
                 move();
             }
 
         } else {
             while (this.x != x){
-                turn(LEFT);
+                turn(Direction.LEFT);
                 fire();
                 move();
             }
@@ -105,13 +105,13 @@ public class Tank {
 
         if(this.y < y) {
             while (this.y != y){
-                turn(DOWN);
+                turn(Direction.DOWN);
                 fire();
                 move();
             }
         } else {
             while (this.y != y){
-                turn(UP);
+                turn(Direction.UP);
                 fire();
                 move();
             }
@@ -124,14 +124,14 @@ public class Tank {
        moveToQuadrant(1,1);
         for (int i = 2; i <= 9; i++) {
             moveToQuadrant(1,i);
-            turn(DOWN);
+            turn(Direction.DOWN);
             for (int j = 1; j <= 8; j++) {
                 if (bf.scanQuadrant(j, i-1) == "B")
                     fire();
             }
         }
             fire();
-            turn(LEFT);
+            turn(Direction.LEFT);
 
     }
 
