@@ -135,4 +135,11 @@ public class Tank {
 
     }
 
+    void destroy() throws Exception {
+        this.x = -1000;
+        this.y = -1000;
+    }
+
+
+
 }

@@ -15,7 +15,10 @@ public class ActionField extends JPanel{
     Bullet bullet;
 
     public void runTheGame() throws Exception {
-        tank.clean();
+        tank.fire();
+        tank.move();
+        tank.destroy();
+        tank.move();
     }
 
     public void processMove(Tank tank) throws Exception{
