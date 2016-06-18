@@ -7,7 +7,7 @@ public class Tank {
 //    final int LEFT = 3;
 //    final int RIGHT = 4;
 
-    private int speed = 10;
+    protected int speed = 10;
 
     //1-up, 2-down, 3-left, 4-right
     private Direction direction;
