@@ -7,9 +7,7 @@ public class Aggressor extends Tank {
         super(af, bf, x, y, dir);
     }
 
-    public Aggressor(ActionField af, BattleField bf){
-        this(af, bf, af.randomPositionX(), 64, Direction.DOWN);
-    }
+
 
     public void updateX(int x){
         this.x += x;

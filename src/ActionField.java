@@ -17,14 +17,8 @@ public class ActionField extends JPanel{
 
     public void runTheGame() throws Exception {
 
-        tankAgr.fire();
-        tankAgr.fire();
-        tankAgr.fire();
+      tank.clean();
 
-        tank.fire();
-        tank.move();
-        tank.destroy();
-        tank.move();
     }
 
     public void processMove(Tank tank) throws Exception{
@@ -92,7 +86,7 @@ public class ActionField extends JPanel{
         }
     }
 
-    private boolean processInterception(){
+    private boolean processInterception() throws Exception {
         String coordinates = getQuadrant(bullet.getX(), bullet.getY());
         int y = Integer.parseInt(coordinates.split("_")[0]);
         int x = Integer.parseInt(coordinates.split("_")[1]);
@@ -101,6 +95,12 @@ public class ActionField extends JPanel{
             if (!battleField.scanQuadrant(y, x).trim().isEmpty()) {
                 battleField.updateQuadreant(y, x, "");
                 return true;
+            }
+            if(getQuadrant(tankAgr.getX(), tankAgr.getY()).equals(coordinates)){
+                tankAgr.destroy();
+                bullet.destroy();
+                Thread.sleep(3000);
+                newAgr();
             }
         }
         return false;
@@ -129,13 +129,18 @@ public class ActionField extends JPanel{
         }
         return x;
     }
+
+    public void newAgr(){
+        tankAgr.setX(randomPositionX());
+        tankAgr.setY(64);
+    }
     // magic methods
 
     public ActionField() throws Exception{
 
         battleField = new BattleField();
         tank = new Tank(this, battleField);
-        tankAgr = new Aggressor(this, battleField);
+        tankAgr = new Aggressor(this, battleField, randomPositionX(), 64, Direction.DOWN);
         bullet = new Bullet(-100, -100, Direction.NONE);
 
         JFrame frame = new JFrame("Tanks");
