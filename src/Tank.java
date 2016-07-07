@@ -13,8 +13,8 @@ public class Tank {
     private Direction direction;
 
     //current position on BF
-    private int x;
-    private int y;
+    public int x;
+    public int y;
 
 
     private ActionField af;
