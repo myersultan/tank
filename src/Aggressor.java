@@ -1,7 +1,7 @@
 /**
  * Created by admin on 7/7/2016.
  */
-public class Aggressor extends Tank {
+public class Aggressor extends Tiger {
 
     public Aggressor(ActionField af, BattleField bf, int x, int y, Direction dir){
         super(af, bf, x, y, dir);

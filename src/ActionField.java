@@ -97,9 +97,14 @@ public class ActionField extends JPanel{
                 return true;
             }
             if(getQuadrant(tankAgr.getX(), tankAgr.getY()).equals(coordinates)){
+                if (tankAgr.armour == 1){
+                    tankAgr.armour = 0;
+                    return true;
+                }
                 tankAgr.destroy();
                 bullet.destroy();
-                Thread.sleep(3000);
+                tank.fire();
+               // Thread.sleep(3000);
                 newAgr();
             }
         }
