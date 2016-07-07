@@ -114,6 +114,21 @@ public class ActionField extends JPanel{
         return (v - 1) * 64 + "_" + (h - 1) * 64;
     }
 
+    public int randomPositionX()
+    {
+        int ran = 1+ (int)(Math.random()*3);
+        int x = 0;
+        if (ran == 1){
+            x = 64;
+        }
+        if (ran == 2){
+            x = 192;
+        }
+        if (ran == 3){
+            x = 448;
+        }
+        return x;
+    }
     // magic methods
 
     public ActionField() throws Exception{

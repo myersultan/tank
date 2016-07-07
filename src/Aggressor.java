@@ -8,7 +8,7 @@ public class Aggressor extends Tank {
     }
 
     public Aggressor(ActionField af, BattleField bf){
-        this(af, bf, 448, 64, Direction.DOWN);
+        this(af, bf, af.randomPositionX(), 64, Direction.DOWN);
     }
 
     public void updateX(int x){
