@@ -1,6 +1,7 @@
+import java.awt.*;
 import java.util.Random;
 
-public abstract class AbstractTank {
+public abstract class AbstractTank implements Drawable, Destroyable {
 
 
 
@@ -140,9 +141,27 @@ public abstract class AbstractTank {
 
     }
 
-    void destroy() throws Exception {
+    public void destroy() {
         this.x = -1000;
         this.y = -1000;
+    }
+
+    public void draw(Graphics g) {
+
+        g.setColor(new Color(255, 0, 0));
+        g.fillRect(this.getX(), this.getY(), 64, 64);
+
+        g.setColor(new Color(0, 255, 0));
+        if (this.getDirection().getId() == 1) {
+            g.fillRect(this.getX() + 20, this.getY(), 24, 34);
+        } else if (this.getDirection().getId() == 2) {
+            g.fillRect(this.getX() + 20, this.getY() + 30, 24, 34);
+        } else if (this.getDirection().getId() == 3) {
+            g.fillRect(this.getX(), this.getY() + 20, 34, 24);
+        } else {
+            g.fillRect(this.getX() + 30, this.getY() + 20, 34, 24);
+        }
+
     }
 
 

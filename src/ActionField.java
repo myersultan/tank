@@ -194,37 +194,14 @@ public class ActionField extends JPanel{
             }
         }
 
-        g.setColor(new Color(255, 0, 0));
-        g.fillRect(tank.getX(), tank.getY(), 64, 64);
-
-        g.setColor(new Color(0, 255, 0));
-        if (tank.getDirection().getId() == 1) {
-            g.fillRect(tank.getX() + 20, tank.getY(), 24, 34);
-        } else if (tank.getDirection().getId() == 2) {
-            g.fillRect(tank.getX() + 20, tank.getY() + 30, 24, 34);
-        } else if (tank.getDirection().getId() == 3) {
-            g.fillRect(tank.getX(), tank.getY() + 20, 34, 24);
-        } else {
-            g.fillRect(tank.getX() + 30, tank.getY() + 20, 34, 24);
-        }
+        tank.draw(g);
+        tankAgr.draw(g);
+        bullet.draw(g);
 
 
-        g.setColor(new Color(255, 0, 0));
-        g.fillRect(tankAgr.getX(), tankAgr.getY(), 64, 64);
-
-        g.setColor(new Color(0, 255, 0));
-        if (tankAgr.getDirection().getId() == 1) {
-            g.fillRect(tankAgr.getX() + 20, tankAgr.getY(), 24, 34);
-        } else if (tankAgr.getDirection().getId() == 2) {
-            g.fillRect(tankAgr.getX() + 20, tankAgr.getY() + 30, 24, 34);
-        } else if (tankAgr.getDirection().getId() == 3) {
-            g.fillRect(tankAgr.getX(), tankAgr.getY() + 20, 34, 24);
-        } else {
-            g.fillRect(tankAgr.getX() + 30, tankAgr.getY() + 20, 34, 24);
-        }
 
 
-        g.setColor(new Color(255, 255, 0));
-        g.fillRect(bullet.getX(), bullet.getY(), 14, 14);
+
+
     }
 }

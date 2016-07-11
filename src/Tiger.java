@@ -14,7 +14,7 @@ public class Tiger extends AbstractTank {
     }
 
     @Override
-    public void destroy() throws Exception {
+    public void destroy() {
         if (armor >0){
             armor = 0;
         } else {
