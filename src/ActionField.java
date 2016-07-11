@@ -140,7 +140,7 @@ public class ActionField extends JPanel{
     public ActionField() throws Exception{
 
         battleField = new BattleField();
-        tank = new BT7(this, battleField);
+        tank = new T34(this, battleField, 128, 512, Direction.UP);
         tankAgr = new Tiger(this, battleField, randomPositionX(), 64, Direction.DOWN);
         bullet = new Bullet(-100, -100, Direction.NONE);
 
