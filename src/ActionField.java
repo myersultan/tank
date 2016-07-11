@@ -11,9 +11,9 @@ public class ActionField extends JPanel{
     private boolean COLORED_MODE = false;
 
     BattleField battleField;
-    Tank tank;
+    AbstractTank tank;
     Bullet bullet;
-    Aggressor tankAgr;
+    Tiger tankAgr;
 
     public void runTheGame() throws Exception {
 
@@ -21,7 +21,7 @@ public class ActionField extends JPanel{
 
     }
 
-    public void processMove(Tank tank) throws Exception{
+    public void processMove(AbstractTank tank) throws Exception{
         this.tank = tank;
         Direction direction = tank.getDirection();
         int step = 1;
@@ -57,7 +57,7 @@ public class ActionField extends JPanel{
         }
     }
 
-    public void processTurn(Tank tank) throws Exception{
+    public void processTurn(AbstractTank tank) throws Exception{
         repaint();
     }
 
@@ -97,10 +97,6 @@ public class ActionField extends JPanel{
                 return true;
             }
             if(getQuadrant(tankAgr.getX(), tankAgr.getY()).equals(coordinates)){
-                if (tankAgr.armour == 1){
-                    tankAgr.armour = 0;
-                    return true;
-                }
                 tankAgr.destroy();
                 bullet.destroy();
                 tank.fire();
@@ -144,8 +140,8 @@ public class ActionField extends JPanel{
     public ActionField() throws Exception{
 
         battleField = new BattleField();
-        tank = new Tank(this, battleField);
-        tankAgr = new Aggressor(this, battleField, randomPositionX(), 64, Direction.DOWN);
+        tank = new BT7(this, battleField);
+        tankAgr = new Tiger(this, battleField, randomPositionX(), 64, Direction.DOWN);
         bullet = new Bullet(-100, -100, Direction.NONE);
 
         JFrame frame = new JFrame("Tanks");

@@ -1,11 +1,8 @@
 import java.util.Random;
 
-public class Tank {
+public abstract class AbstractTank {
 
-//    final int UP = 1;
-//    final int DOWN = 2;
-//    final int LEFT = 3;
-//    final int RIGHT = 4;
+
 
     protected int speed = 10;
 
@@ -13,18 +10,18 @@ public class Tank {
     private Direction direction;
 
     //current position on BF
-    public int x;
-    public int y;
+    protected int x;
+    protected int y;
 
 
     private ActionField af;
     private BattleField bf;
 
-    public Tank(ActionField af, BattleField bf){
+    public AbstractTank(ActionField af, BattleField bf){
         this(af, bf, 128, 512, Direction.UP);
     }
 
-    public Tank(ActionField af, BattleField bf, int x, int y, Direction direction){
+    public AbstractTank(ActionField af, BattleField bf, int x, int y, Direction direction){
         this.af = af;
         this.bf = bf;
         this.x = x;
