@@ -1,3 +1,12 @@
+package Tanks;
+
+import battleField.BattleField;
+import Engine.ActionField;
+import Engine.Bullet;
+import Enums.Direction;
+import Interfaces.Destroyable;
+import Interfaces.Drawable;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -17,6 +26,9 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     private ActionField af;
     private BattleField bf;
+
+    protected Color tankColor;
+    protected Color towerColor;
 
     public AbstractTank(ActionField af, BattleField bf){
         this(af, bf, 128, 512, Direction.UP);
@@ -125,7 +137,7 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     }
 
-    void clean() throws Exception {
+    public void clean() throws Exception {
 
        moveToQuadrant(1,1);
         for (int i = 2; i <= 9; i++) {
@@ -148,10 +160,10 @@ public abstract class AbstractTank implements Drawable, Destroyable {
 
     public void draw(Graphics g) {
 
-        g.setColor(new Color(255, 0, 0));
+        g.setColor(tankColor);//new Color(255, 0, 0)
         g.fillRect(this.getX(), this.getY(), 64, 64);
 
-        g.setColor(new Color(0, 255, 0));
+        g.setColor(towerColor);
         if (this.getDirection().getId() == 1) {
             g.fillRect(this.getX() + 20, this.getY(), 24, 34);
         } else if (this.getDirection().getId() == 2) {

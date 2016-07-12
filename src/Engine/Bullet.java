@@ -1,6 +1,12 @@
+package Engine;
+
+import Enums.Direction;
+import Interfaces.Destroyable;
+import Interfaces.Drawable;
+
 import java.awt.*;
 
-public class Bullet implements Drawable, Destroyable{
+public class Bullet implements Drawable, Destroyable {
     private int speed = 5;
 
     private int x;

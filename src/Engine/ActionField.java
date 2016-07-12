@@ -1,3 +1,11 @@
+package Engine;
+
+import Enums.Direction;
+import Tanks.AbstractTank;
+import battleField.BattleField;
+import Tanks.T34;
+import Tanks.Tiger;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
